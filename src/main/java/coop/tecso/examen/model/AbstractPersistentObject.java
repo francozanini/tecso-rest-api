@@ -15,10 +15,7 @@ import javax.persistence.Version;
 
 import org.springframework.data.annotation.LastModifiedDate;
 
-/**
- * Abstract base persistent object that provides object identification and basic
- * auditory fields.
- */
+
 @MappedSuperclass
 public abstract class AbstractPersistentObject implements Serializable {
 
@@ -41,8 +38,6 @@ public abstract class AbstractPersistentObject implements Serializable {
     @Temporal(TemporalType.TIMESTAMP)
     @LastModifiedDate
     private Date modificationTimestamp;
-
-
 
     public Long getId() {
         return id;
