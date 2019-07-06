@@ -38,6 +38,7 @@ public class NaturalPerson extends AbstractPersistentObject
 	@NotNull(message = "Please provide an unique dni")
 	private Long dni;
 	
+	@Column(name = "cuit", unique = true)
 	private String cuit;
 	
 	public Long getDni() {
