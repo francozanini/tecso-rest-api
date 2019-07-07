@@ -28,9 +28,8 @@ public class NaturalPersonServiceImpl implements NaturalPersonService{
 	@Autowired
 	private ModelMapper modelMapper;
 	
-	public NaturalPerson addPerson(NaturalPersonDto newPersonDto) {
+	public NaturalPerson addPerson(NaturalPersonDto newPersonDto)  {	
 		NaturalPerson newPerson = modelMapper.map(newPersonDto, NaturalPerson.class);
-		
 		return personRepository.save(newPerson);		
 	}
 
@@ -63,9 +62,13 @@ public class NaturalPersonServiceImpl implements NaturalPersonService{
 		
 	}
 			
-	public void remove(@Min(1) Long id) 
+	public void remove(@Min(1) Long id) throws NotFoundException 
 	{
-		personRepository.deleteById(id);
+		NaturalPerson person = personRepository
+		            .findById(id)
+		            .orElseThrow(() -> new NotFoundException("Person not found on " + id));
+		
+		personRepository.delete(person);
 	}
 
 }

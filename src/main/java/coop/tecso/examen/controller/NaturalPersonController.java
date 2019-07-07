@@ -54,14 +54,14 @@ public class NaturalPersonController {
 				 .buildAndExpand(person.getId().toString())
 				 .toUri();
 		 
-		 
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @DeleteMapping(path = "{id}")
-	 public ResponseEntity<Void> delete(@PathVariable @Min(1) Long id) 
+	 @DeleteMapping(path = "/{id}")
+	 public ResponseEntity<Void> delete(@PathVariable @Min(1) Long id) throws NotFoundException 
 	 {
 		 personService.remove(id);
+		 
 		 return ResponseEntity.status(HttpStatus.OK).build();
 	 }
 	

@@ -2,6 +2,7 @@ package coop.tecso.examen.model;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
@@ -14,7 +15,7 @@ public class NaturalPerson extends AbstractPersistentObject
 	
 	private static final long serialVersionUID = 7104742805045626828L;
 	
-	NaturalPerson() {}
+	public NaturalPerson() {}
 	
 	NaturalPerson( String firstName,
 			String lastName, 
@@ -23,6 +24,7 @@ public class NaturalPerson extends AbstractPersistentObject
 	{
 		this.firstName = firstName;
 		this.dni = dni;
+		this.cuit = cuit;
 		this.lastName = lastName;
 	}
 			
@@ -40,6 +42,8 @@ public class NaturalPerson extends AbstractPersistentObject
 	
 	@Column(name = "cuit", unique = true, length = 40)
 	private String cuit;
+	
+	
 	
 	public Long getDni() {
 		return dni;
@@ -59,14 +63,6 @@ public class NaturalPerson extends AbstractPersistentObject
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
-	}
-
-	public String getCuit() {
-		return cuit;
-	}
-
-	public void setCuit(String cuit) {
-		this.cuit = cuit;
 	}
 	
 }

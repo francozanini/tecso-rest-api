@@ -12,7 +12,4 @@ public interface NaturalPersonRepository extends JpaRepository<NaturalPerson, Lo
     
     Optional<NaturalPerson> findByDni(Long dni);
     
-    
-    
-    
 }

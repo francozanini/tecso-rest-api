@@ -21,17 +21,18 @@ import java.util.stream.Collectors;
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
 	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-                                                                  HttpHeaders headers,
-                                                                  HttpStatus status, 
-                                                                  WebRequest request) 
+	protected ResponseEntity<Object> handleMethodArgumentNotValid (
+			MethodArgumentNotValidException ex,
+			HttpHeaders headers,
+            HttpStatus status, 
+            WebRequest request) 
 	{
 
         Map<String, Object> body = new LinkedHashMap<>();
+
         body.put("timestamp", new Date());
         body.put("status", status.value());
 
-        
         List<String> errors = ex.getBindingResult()
                 .getFieldErrors()
                 .stream()
@@ -40,45 +41,39 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
         body.put("errors", errors);
 
-        return new ResponseEntity<>(body, headers, status);
+        return new ResponseEntity<>(body, headers, HttpStatus.BAD_REQUEST);
     }
 	
-	@ExceptionHandler(value = {IllegalArgumentException.class})
+	@ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class })
 	protected ResponseEntity<Object> handleIllegalArgumentException (
-			IllegalArgumentException ex, 
+			RuntimeException ex, 
 			HttpHeaders headers,
             HttpStatus status, 
             WebRequest request) 
 {
-		Map<String, Object> body = new LinkedHashMap<>();
-		body.put("timestamp", new Date());
-		body.put("status", status.value());
-
-		String error = ex.getMessage();
-
-		body.put("error", error);
-
-		return new ResponseEntity<>(body, headers, status);
+		return errorResponse(HttpStatus.BAD_REQUEST, headers, ex.getMessage()); 
 }
 	
 	@ExceptionHandler(value = {NotFoundException.class})
 	protected ResponseEntity<Object> handleNotFoundException(
-			NotFoundException ex,
+			RuntimeException ex,
 			HttpHeaders headers,
 			HttpStatus status,
 			WebRequest request)
 	{
+		return errorResponse(HttpStatus.NOT_FOUND, headers, ex.getMessage());
+	}
+		
+	private ResponseEntity<Object> errorResponse(HttpStatus status, HttpHeaders headers, String errorMessage)
+	{
 		Map<String, Object> body = new LinkedHashMap<>();
+		
 		body.put("timestamp", new Date());
-		body.put("status", status.value());
-		
-		String error = ex.getMessage();
-		
-		body.put("error", error);
+		body.put("status", status);
+		body.put("error", errorMessage);
 		
 		return new ResponseEntity<>(body, headers, status);
 	}
-		
 	
 
 }

@@ -8,6 +8,7 @@ import javax.validation.constraints.Min;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import coop.tecso.examen.dto.LegalPersonDto;
 import coop.tecso.examen.model.LegalPerson;
@@ -15,6 +16,7 @@ import coop.tecso.examen.repository.LegalPersonRepository;
 import coop.tecso.examen.service.LegalPersonService;
 import javassist.NotFoundException;
 
+@Service
 public class LegalPersonServiceImpl implements LegalPersonService {
 
 	@Autowired
@@ -50,9 +52,9 @@ public class LegalPersonServiceImpl implements LegalPersonService {
 		
 	}
 	
-	public LegalPerson editPerson(LegalPersonDto LegalPersonDto) throws NotFoundException
+	public LegalPerson editPerson(long id, LegalPersonDto LegalPersonDto) throws NotFoundException
 	{
-		Optional<LegalPerson> optionalPerson = personRepository.findById(LegalPersonDto.getId());
+		Optional<LegalPerson> optionalPerson = personRepository.findById(id);
 		
 		LegalPerson person;
 		
@@ -75,8 +77,11 @@ public class LegalPersonServiceImpl implements LegalPersonService {
 		return personRepository.save(person);
 	}
 			
-	public void remove(@Min(1) Long id) 
+	public void remove(@Min(1) Long id) throws NotFoundException 
 	{
-		personRepository.deleteById(id);
+		if (personRepository.existsById(id)) {
+			personRepository.deleteById(id);			
+		}
+		else throw new NotFoundException(String.format("Person of id %d was not found", id));
 	}
 }

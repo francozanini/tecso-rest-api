@@ -26,7 +26,7 @@ import coop.tecso.examen.service.impl.LegalPersonServiceImpl;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping("/persons/natural")
+@RequestMapping("/persons/legal")
 public class LegalPersonController {
 
 	@Autowired
@@ -58,10 +58,10 @@ public class LegalPersonController {
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @PutMapping
-	 public ResponseEntity<Void> edit (@Valid @RequestBody LegalPersonDto newPersonDto) throws NotFoundException
+	 @PutMapping(path = "/{id}")
+	 public ResponseEntity<Void> edit (@PathVariable("id") final long id, @Valid @RequestBody LegalPersonDto newPersonDto) throws NotFoundException
 	 {
-		 LegalPerson person = personService.editPerson(newPersonDto);
+		 LegalPerson person = personService.editPerson(id, newPersonDto);
 
 		 URI location = ServletUriComponentsBuilder.fromCurrentRequest()
 				 .path("/{id}")
@@ -71,8 +71,8 @@ public class LegalPersonController {
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @DeleteMapping(path = "{id}")
-	 public ResponseEntity<Void> delete(@PathVariable @Min(1) Long id) 
+	 @DeleteMapping(path = "/{id}")
+	 public ResponseEntity<Void> delete(@PathVariable @Min(1) Long id) throws NotFoundException 
 	 {
 		 personService.remove(id);
 		 return ResponseEntity.status(HttpStatus.OK).build();
