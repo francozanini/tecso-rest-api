@@ -28,11 +28,11 @@ public class CuitTrigger implements Trigger {
 		
 		String query = String.format("SELECT cuit "
 				+ "FROM %s otherTable "
-				+ "WHERE otherTable.cuit = %s", this.otherTable, (String) newRow[3]);
+				+ "WHERE otherTable.cuit = %s", this.otherTable,  newRow[5]);
 		
 		ResultSet res = statement.executeQuery(query); 
 		
-		if (res.first())
+		if (!res.first())
 		{
 			throw new SQLException("That cuit is repeated somewhere");
 		}

@@ -11,6 +11,7 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import javassist.NotFoundException;
 
+import java.sql.SQLException;
 import java.util.Date;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -63,6 +64,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	{
 		return errorResponse(HttpStatus.NOT_FOUND, headers, ex.getMessage());
 	}
+	
+	@ExceptionHandler(value = {SQLException.class})
+	protected ResponseEntity<Object> handleSQLException(
+			RuntimeException ex,
+			HttpHeaders headers,
+			HttpStatus status,
+			WebRequest request)
+	{
+		return errorResponse(HttpStatus.BAD_REQUEST, headers, ex.getMessage());
+	}
+	
 		
 	private ResponseEntity<Object> errorResponse(HttpStatus status, HttpHeaders headers, String errorMessage)
 	{
@@ -72,7 +84,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 		body.put("status", status);
 		body.put("error", errorMessage);
 		
-		return new ResponseEntity<>(body, headers, status);
+		return new ResponseEntity<Object>(body, headers, status);
 	}
 	
 

@@ -23,10 +23,13 @@ public class NaturalPerson extends AbstractPersistentObject
 	{
 		this.firstName = firstName;
 		this.dni = dni;
-		this.cuit = cuit;
+		this.setCuit(cuit);
 		this.lastName = lastName;
 	}
-			
+	
+	@Column(name = "cuit", unique = true, length = 40)
+	private String cuit;
+	
 	@Column(name="first_name", length = 80)
 	@NotEmpty(message = "Please provide a name")
 	private String firstName;
@@ -38,11 +41,6 @@ public class NaturalPerson extends AbstractPersistentObject
 	@Column(name="dni", unique=true)
 	@NotNull(message = "Please provide an unique dni")
 	private Long dni;
-	
-	@Column(name = "cuit", unique = true, length = 40)
-	private String cuit;
-	
-	
 	
 	public Long getDni() {
 		return dni;
@@ -62,6 +60,14 @@ public class NaturalPerson extends AbstractPersistentObject
 	}
 	public void setFirstName(String firstName) {
 		this.firstName = firstName;
+	}
+
+	public String getCuit() {
+		return cuit;
+	}
+
+	public void setCuit(String cuit) {
+		this.cuit = cuit;
 	}
 	
 }
