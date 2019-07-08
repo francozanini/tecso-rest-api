@@ -46,7 +46,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
     }
 	
 	@ExceptionHandler(value = {IllegalArgumentException.class, IllegalStateException.class })
-	protected ResponseEntity<Object> handleIllegalArgumentException (
+	protected ResponseEntity<?> handleIllegalArgumentException (
 			RuntimeException ex, 
 			HttpHeaders headers,
             HttpStatus status, 
@@ -56,7 +56,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 }
 	
 	@ExceptionHandler(value = {NotFoundException.class})
-	protected ResponseEntity<Object> handleNotFoundException(
+	protected ResponseEntity<?> handleNotFoundException(
 			RuntimeException ex,
 			HttpHeaders headers,
 			HttpStatus status,
@@ -66,7 +66,7 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	}
 	
 	@ExceptionHandler(value = {SQLException.class})
-	protected ResponseEntity<Object> handleSQLException(
+	protected ResponseEntity<?> handleSQLException(
 			RuntimeException ex,
 			HttpHeaders headers,
 			HttpStatus status,

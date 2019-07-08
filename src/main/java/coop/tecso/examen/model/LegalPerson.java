@@ -14,7 +14,7 @@ public class LegalPerson extends AbstractPersistentObject
 	private static final long serialVersionUID = 265357595511682231L;
 	
 	@Column(name = "cuit", unique = true)
-	private String cuit;
+	private Long cuit;
 	
 	@Column(name = "first_year_of_business")
 	private Year firstYearOfBusiness;
@@ -24,7 +24,7 @@ public class LegalPerson extends AbstractPersistentObject
 
 	public LegalPerson() {}
 	
-	public LegalPerson(String businessName, String cuit, Year firstYearOfBusiness)
+	public LegalPerson(String businessName, Long cuit, Year firstYearOfBusiness)
 	{
 		this.businessName = businessName;
 		this.cuit = cuit;
@@ -47,11 +47,11 @@ public class LegalPerson extends AbstractPersistentObject
 		this.firstYearOfBusiness = firstYearOfBusiness;
 	}
 
-	public String getCuit() {
+	public Long getCuit() {
 		return cuit;
 	}
 
-	public void setCuit(String cuit) {
+	public void setCuit(Long cuit) {
 		this.cuit = cuit;
 	}
 

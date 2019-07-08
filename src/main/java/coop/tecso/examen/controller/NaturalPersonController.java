@@ -39,7 +39,7 @@ public class NaturalPersonController {
 	}
 	
 	@GetMapping(value = "/{id}")
-	public ResponseEntity<NaturalPersonDto> getUser (@PathVariable("id") @Min(1) Long id) throws NotFoundException  
+	public ResponseEntity<NaturalPersonDto> getPerson (@PathVariable("id") @Min(1) Long id) throws NotFoundException  
 	{
 		 Optional<NaturalPersonDto> person = personService.findById(id);
 		 return new ResponseEntity<NaturalPersonDto>(person.get(), HttpStatus.OK);

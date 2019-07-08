@@ -12,7 +12,7 @@ public class NaturalPersonDto implements Serializable {
 	
 	private String lastName;
 	
-	private String cuit;
+	private Long cuit;
 	
 	private Long dni;
 
@@ -48,11 +48,11 @@ public class NaturalPersonDto implements Serializable {
 		this.dni = dni;
 	}
 
-	public String getCuit() {
+	public Long getCuit() {
 		return cuit;
 	}
 
-	public void setCuit(String cuit) {
+	public void setCuit(Long cuit) {
 		this.cuit = cuit;
 	}
 

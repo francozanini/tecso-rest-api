@@ -9,7 +9,7 @@ public class LegalPersonDto implements Serializable{
 	private static final long serialVersionUID = 6063733338835895092L;
 	
 	private Long id;	
-	private String cuit;
+	private Long cuit;
 	private Year firstYearOfBusiness;
 	private String businessName;
 	
@@ -20,10 +20,10 @@ public class LegalPersonDto implements Serializable{
 		this.id = id;
 	}
 	
-	public String getCuit() {
+	public Long getCuit() {
 		return cuit;
 	}
-	public void setCuit(String cuit) {
+	public void setCuit(Long cuit) {
 		this.cuit = cuit;
 	}
 	
