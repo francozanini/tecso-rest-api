@@ -71,4 +71,25 @@ public class NaturalPersonServiceImpl implements NaturalPersonService{
 		personRepository.delete(person);
 	}
 
+	public NaturalPerson editPerson(@Min(1) Long id, NaturalPersonDto personDto) 
+	{
+		NaturalPerson person; 
+		
+		if (personRepository.existsById(id))
+		{
+			person = modelMapper.map(personDto, NaturalPerson.class);
+		}
+		else 
+		{
+			person = new NaturalPerson(personDto.getFirstName(),
+					personDto.getLastName(),
+					personDto.getDni(),
+					personDto.getCuit());
+			
+			person.setId(id);
+		}
+		
+		return personRepository.save(person);
+	}
+
 }

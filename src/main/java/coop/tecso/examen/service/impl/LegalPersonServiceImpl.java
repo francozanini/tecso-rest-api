@@ -60,18 +60,18 @@ public class LegalPersonServiceImpl implements LegalPersonService {
 		
 		if (optionalPerson.isPresent())
 		{
-			person = new LegalPerson(LegalPersonDto.getBusinessName(),
-					LegalPersonDto.getCuit(),
-					LegalPersonDto.getFirstYearOfBusiness());
-			
-		}
-		else 
-		{
 			person = optionalPerson.get();
 			
 			person.setBusinessName(LegalPersonDto.getBusinessName());
 			person.setCuit(LegalPersonDto.getCuit());
 			person.setFirstYearOfBusiness(LegalPersonDto.getFirstYearOfBusiness());
+			
+		}
+		else 
+		{
+			person = new LegalPerson(LegalPersonDto.getBusinessName(),
+					LegalPersonDto.getCuit(),
+					LegalPersonDto.getFirstYearOfBusiness());
 		
 		}
 		return personRepository.save(person);

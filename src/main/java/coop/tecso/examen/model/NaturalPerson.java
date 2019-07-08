@@ -16,7 +16,7 @@ public class NaturalPerson extends AbstractPersistentObject
 	
 	public NaturalPerson() {}
 	
-	NaturalPerson( String firstName,
+	public NaturalPerson( String firstName,
 			String lastName, 
 			Long dni, 
 			String cuit) 
