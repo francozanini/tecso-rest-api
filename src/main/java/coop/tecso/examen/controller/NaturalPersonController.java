@@ -27,57 +27,59 @@ import coop.tecso.examen.service.impl.NaturalPersonServiceImpl;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping("/persons/natural")
+@RequestMapping("/person/natural")
 public class NaturalPersonController {
 
 	@Autowired
 	private NaturalPersonServiceImpl personService;
 	
-	@GetMapping
+	@GetMapping(headers = "Accept=application/json")
 	public List<NaturalPersonDto> index()
 	{
 		return personService.list();
 	}
 	
-	@GetMapping(value = "/{id}")
-	public ResponseEntity<NaturalPersonDto> getPerson (@PathVariable("id") @Min(1) Long id) throws NotFoundException  
+	@GetMapping(value = "/{id}", headers = "Accept=application/json")
+	public ResponseEntity<NaturalPersonDto> getPerson (@PathVariable(value = "id") @Min(1) Long id) throws NotFoundException  
 	{
 		 Optional<NaturalPersonDto> person = personService.findById(id);
 		 return new ResponseEntity<NaturalPersonDto>(person.get(), HttpStatus.OK);
 	}
 	
-	 @PostMapping
-	 public ResponseEntity<Void> create(@Valid @RequestBody NaturalPersonDto newPerson) 
+	 @PostMapping(headers = "Accept=application/json")
+	 public ResponseEntity<NaturalPersonDto> create(@Valid @RequestBody NaturalPersonDto newPerson) 
 	 {
 		 NaturalPerson person = personService.addPerson(newPerson);
 		 
-		 URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-				 .path("/{id}")
-				 .buildAndExpand(person.getId().toString())
-				 .toUri();
+		 URI location = buildURI(person.getId());
 		 
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @PutMapping(path = "/{id}")
-	 public ResponseEntity<Void> edit (@PathVariable @Min(1) final Long id, @RequestBody UpdateNaturalPersonDto personDto)
+	 @PutMapping(path = "/{id}", headers = "Accept=application/json")
+	 public ResponseEntity<Void> edit (@PathVariable(value = "id") @Min(1) final Long id, @RequestBody UpdateNaturalPersonDto personDto)
 	 {
 		 NaturalPerson person = personService.editPerson(id, personDto);
 
-		 URI location = ServletUriComponentsBuilder.fromCurrentRequest()
-				 .path("/{id}")
-				 .buildAndExpand(person.getId().toString())
-				 .toUri();
+		 URI location = buildURI(person.getId());
 		 
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @DeleteMapping(path = "/{id}")
-	 public ResponseEntity<Void> delete(@PathVariable @Min(1) Long id) throws NotFoundException 
+	 @DeleteMapping(path = "/{id}", headers = "Accept=application/json")
+	 public ResponseEntity<String> delete(@PathVariable(value = "id") @Min(1) Long id) throws NotFoundException 
 	 {
 		 personService.remove(id);
 		 
-		 return ResponseEntity.status(HttpStatus.OK).build();
+		 return new ResponseEntity<String>("Person removed", HttpStatus.OK);
+	 }
+	 
+	 private URI buildURI(Long id)
+	 {
+		 return ServletUriComponentsBuilder.fromCurrentRequest()
+				 .replacePath("/{id}")
+				 .buildAndExpand(id.toString())
+				 .toUri();
 	 }
 	
 }

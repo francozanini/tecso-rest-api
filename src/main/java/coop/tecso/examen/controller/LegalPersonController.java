@@ -27,26 +27,26 @@ import coop.tecso.examen.service.impl.LegalPersonServiceImpl;
 import javassist.NotFoundException;
 
 @RestController
-@RequestMapping("/persons/legal")
+@RequestMapping("/person/legal")
 public class LegalPersonController {
 
 	@Autowired
 	private LegalPersonServiceImpl personService;
 	
-	@GetMapping
+	@GetMapping(headers = "Accept=application/json")
 	public List<LegalPersonDto> index()
 	{
 		return personService.list();
 	}
 	
-	@GetMapping(value = "/{id}")
+	@GetMapping(value = "/{id}", headers = "Accept=application/json")
 	public ResponseEntity<LegalPersonDto> getUser (@PathVariable("id") @Min(1) Long id) throws NotFoundException  
 	{
 		 Optional<LegalPersonDto> person = personService.findById(id);
 		 return new ResponseEntity<LegalPersonDto>(person.get(), HttpStatus.OK);
 	}
 	
-	 @PostMapping
+	 @PostMapping(headers = "Accept=application/json")
 	 public ResponseEntity<Void> create(@Valid @RequestBody LegalPersonDto newPersonDto) 
 	 {
 		 LegalPerson person = personService.addPerson(newPersonDto);
@@ -59,7 +59,7 @@ public class LegalPersonController {
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @PutMapping(path = "/{id}")
+	 @PutMapping(path = "/{id}", headers = "Accept=application/json")
 	 public ResponseEntity<Void> edit (@PathVariable("id") final long id, @Valid @RequestBody UpdateLegalPersonDto newPersonDto) throws NotFoundException
 	 {
 		 LegalPerson person = personService.editPerson(id, newPersonDto);
