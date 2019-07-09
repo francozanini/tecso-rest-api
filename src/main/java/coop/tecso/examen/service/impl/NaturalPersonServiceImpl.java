@@ -72,7 +72,7 @@ public class NaturalPersonServiceImpl implements NaturalPersonService{
 		personRepository.delete(person);
 	}
 
-	public NaturalPerson editPerson(@Min(1) Long id, UpdateNaturalPersonDto personDto) 
+	public NaturalPerson editPerson(Long id, UpdateNaturalPersonDto personDto) 
 	{
 		Optional<NaturalPerson> optionalPerson = personRepository.findById(id);
 		

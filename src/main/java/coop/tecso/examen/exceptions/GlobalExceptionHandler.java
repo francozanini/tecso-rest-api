@@ -18,6 +18,8 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+import javax.validation.ConstraintViolationException;
+
 @ControllerAdvice
 public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
@@ -74,6 +76,17 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 	{
 		return errorResponse(HttpStatus.BAD_REQUEST, headers, ex.getMessage());
 	}
+	
+	@ExceptionHandler(value = {ConstraintViolationException.class})
+	protected ResponseEntity<?> handleConstraintViolationException(
+			ConstraintViolationException ex,
+			HttpHeaders headers,
+			HttpStatus status,
+			WebRequest request)
+	{
+		return errorResponse(status, headers, ex.getConstraintViolations().toString());
+	}
+	
 	
 		
 	private ResponseEntity<Object> errorResponse(HttpStatus status, HttpHeaders headers, String errorMessage)

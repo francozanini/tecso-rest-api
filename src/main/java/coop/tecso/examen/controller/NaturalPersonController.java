@@ -56,8 +56,8 @@ public class NaturalPersonController {
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @PutMapping(path = "/{id}", headers = "Accept=application/json")
-	 public ResponseEntity<Void> edit (@PathVariable(value = "id") @Min(1) final Long id, @RequestBody UpdateNaturalPersonDto personDto)
+	 @PutMapping(path = "/{id}")
+	 public ResponseEntity<Void> edit (@Min(1) @PathVariable Long id, @RequestBody UpdateNaturalPersonDto personDto)
 	 {
 		 NaturalPerson person = personService.editPerson(id, personDto);
 

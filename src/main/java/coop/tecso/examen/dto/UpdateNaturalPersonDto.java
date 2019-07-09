@@ -46,7 +46,4 @@ public class UpdateNaturalPersonDto implements Serializable {
 		this.dni = dni;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
 }
