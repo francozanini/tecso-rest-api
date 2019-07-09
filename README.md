@@ -14,7 +14,7 @@ La API cuenta con dos controladores. Uno para entidades jurídicas y otro para e
 
 - El modelo de datos consta de dos entidades y usa herencia del tipo SINGLE-TABLE. En pos de no desperdiciar espacio, se podrían separar las entidades en distintas tablas.
 
-- Se pueden agrupar cuestiones comunes a ambas entidades en una tercera entidad 'Titular', adaptando la API al patrón actor-rol. En este caso, se podría contar con un tercer controllador, servicios, dtos; etcétera.
+- Se pueden agrupar cuestiones comunes a ambas entidades en una tercera entidad 'Titular', adaptando la API al patrón actor-rol. En este caso, se podría contar con un tercer controllador -así como servicios, dtos, etcétera- que permita realizar operaciones sobre todo tipo de persona.
 
 - Pueden añadirse filtros, offsets y límites a los listados.
 
