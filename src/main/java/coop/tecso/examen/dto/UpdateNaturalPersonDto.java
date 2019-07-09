@@ -2,12 +2,10 @@ package coop.tecso.examen.dto;
 
 import java.io.Serializable;
 
-public class NaturalPersonDto implements Serializable {
+public class UpdateNaturalPersonDto implements Serializable {
 
-	private static final long serialVersionUID = -6872384206047916318L;
-	
-	private Long id;
-	
+	private static final long serialVersionUID = 6991857527476727173L;
+
 	private String firstName;
 	
 	private String lastName;
@@ -15,14 +13,6 @@ public class NaturalPersonDto implements Serializable {
 	private Long cuit;
 	
 	private Long dni;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
 
 	public String getFirstName() {
 		return firstName;
@@ -40,14 +30,6 @@ public class NaturalPersonDto implements Serializable {
 		this.lastName = lastName;
 	}
 
-	public Long getDni() {
-		return dni;
-	}
-
-	public void setDni(Long dni) {
-		this.dni = dni;
-	}
-
 	public Long getCuit() {
 		return cuit;
 	}
@@ -56,9 +38,15 @@ public class NaturalPersonDto implements Serializable {
 		this.cuit = cuit;
 	}
 
+	public Long getDni() {
+		return dni;
+	}
+
+	public void setDni(Long dni) {
+		this.dni = dni;
+	}
+
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-
-	
 }

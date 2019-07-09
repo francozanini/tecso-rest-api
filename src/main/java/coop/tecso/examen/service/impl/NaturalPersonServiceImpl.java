@@ -13,6 +13,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.stereotype.Service;
 
 import coop.tecso.examen.dto.NaturalPersonDto;
+import coop.tecso.examen.dto.UpdateNaturalPersonDto;
 import coop.tecso.examen.model.NaturalPerson;
 import coop.tecso.examen.repository.NaturalPersonRepository;
 import coop.tecso.examen.service.NaturalPersonService;
@@ -71,13 +72,20 @@ public class NaturalPersonServiceImpl implements NaturalPersonService{
 		personRepository.delete(person);
 	}
 
-	public NaturalPerson editPerson(@Min(1) Long id, NaturalPersonDto personDto) 
+	public NaturalPerson editPerson(@Min(1) Long id, UpdateNaturalPersonDto personDto) 
 	{
+		Optional<NaturalPerson> optionalPerson = personRepository.findById(id);
+		
 		NaturalPerson person; 
 		
-		if (personRepository.existsById(id))
+		if (optionalPerson.isPresent())
 		{
-			person = modelMapper.map(personDto, NaturalPerson.class);
+			person = optionalPerson.get();
+			
+			person.setCuit(personDto.getCuit());
+			person.setDni(personDto.getDni());
+			person.setFirstName(personDto.getFirstName());
+			person.setLastName(personDto.getLastName());
 		}
 		else 
 		{

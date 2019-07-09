@@ -3,22 +3,13 @@ package coop.tecso.examen.dto;
 import java.io.Serializable;
 import java.time.Year;
 
-public class LegalPersonDto implements Serializable{
+public class UpdateLegalPersonDto implements Serializable{
 
 
-	private static final long serialVersionUID = 6063733338835895092L;
-	
-	private Long id;	
+	private static final long serialVersionUID = 5819410716957028857L;
 	private Long cuit;
 	private Year firstYearOfBusiness;
 	private String businessName;
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
 	
 	public Long getCuit() {
 		return cuit;
@@ -26,14 +17,12 @@ public class LegalPersonDto implements Serializable{
 	public void setCuit(Long cuit) {
 		this.cuit = cuit;
 	}
-	
 	public Year getFirstYearOfBusiness() {
 		return firstYearOfBusiness;
 	}
 	public void setFirstYearOfBusiness(Year firstYearOfBusiness) {
 		this.firstYearOfBusiness = firstYearOfBusiness;
 	}
-	
 	public String getBusinessName() {
 		return businessName;
 	}
@@ -43,4 +32,5 @@ public class LegalPersonDto implements Serializable{
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+	
 }

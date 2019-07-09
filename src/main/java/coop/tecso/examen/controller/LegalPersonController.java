@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import coop.tecso.examen.dto.LegalPersonDto;
+import coop.tecso.examen.dto.UpdateLegalPersonDto;
 import coop.tecso.examen.model.LegalPerson;
 import coop.tecso.examen.service.impl.LegalPersonServiceImpl;
 import javassist.NotFoundException;
@@ -59,7 +60,7 @@ public class LegalPersonController {
 	 }
 	 
 	 @PutMapping(path = "/{id}")
-	 public ResponseEntity<Void> edit (@PathVariable("id") final long id, @Valid @RequestBody LegalPersonDto newPersonDto) throws NotFoundException
+	 public ResponseEntity<Void> edit (@PathVariable("id") final long id, @Valid @RequestBody UpdateLegalPersonDto newPersonDto) throws NotFoundException
 	 {
 		 LegalPerson person = personService.editPerson(id, newPersonDto);
 

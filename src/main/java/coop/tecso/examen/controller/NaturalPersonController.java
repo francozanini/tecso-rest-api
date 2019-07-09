@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import coop.tecso.examen.dto.NaturalPersonDto;
+import coop.tecso.examen.dto.UpdateNaturalPersonDto;
 import coop.tecso.examen.model.NaturalPerson;
 import coop.tecso.examen.service.impl.NaturalPersonServiceImpl;
 import javassist.NotFoundException;
@@ -59,7 +60,7 @@ public class NaturalPersonController {
 	 }
 	 
 	 @PutMapping(path = "/{id}")
-	 public ResponseEntity<Void> edit (@PathVariable @Min(1) final Long id, @RequestBody NaturalPersonDto personDto)
+	 public ResponseEntity<Void> edit (@PathVariable @Min(1) final Long id, @RequestBody UpdateNaturalPersonDto personDto)
 	 {
 		 NaturalPerson person = personService.editPerson(id, personDto);
 

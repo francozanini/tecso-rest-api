@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import coop.tecso.examen.dto.LegalPersonDto;
+import coop.tecso.examen.dto.UpdateLegalPersonDto;
 import coop.tecso.examen.model.LegalPerson;
 import coop.tecso.examen.repository.LegalPersonRepository;
 import coop.tecso.examen.service.LegalPersonService;
@@ -52,7 +53,7 @@ public class LegalPersonServiceImpl implements LegalPersonService {
 		
 	}
 	
-	public LegalPerson editPerson(long id, LegalPersonDto LegalPersonDto) throws NotFoundException
+	public LegalPerson editPerson(long id, UpdateLegalPersonDto PersonDto) throws NotFoundException
 	{
 		Optional<LegalPerson> optionalPerson = personRepository.findById(id);
 		
@@ -62,18 +63,17 @@ public class LegalPersonServiceImpl implements LegalPersonService {
 		{
 			person = optionalPerson.get();
 			
-			person.setBusinessName(LegalPersonDto.getBusinessName());
-			person.setCuit(LegalPersonDto.getCuit());
-			person.setFirstYearOfBusiness(LegalPersonDto.getFirstYearOfBusiness());
-			
+			person.setBusinessName(PersonDto.getBusinessName());
+			person.setCuit(PersonDto.getCuit());
+			person.setFirstYearOfBusiness(PersonDto.getFirstYearOfBusiness());
 		}
 		else 
 		{
-			person = new LegalPerson(LegalPersonDto.getBusinessName(),
-					LegalPersonDto.getCuit(),
-					LegalPersonDto.getFirstYearOfBusiness());
-		
+			person = new LegalPerson(PersonDto.getBusinessName(),
+					PersonDto.getCuit(),
+					PersonDto.getFirstYearOfBusiness());
 		}
+		
 		return personRepository.save(person);
 	}
 			
