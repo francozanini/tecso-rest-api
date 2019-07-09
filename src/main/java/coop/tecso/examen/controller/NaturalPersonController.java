@@ -33,20 +33,20 @@ public class NaturalPersonController {
 	@Autowired
 	private NaturalPersonServiceImpl personService;
 	
-	@GetMapping(headers = "Accept=application/json")
+	@GetMapping
 	public List<NaturalPersonDto> index()
 	{
 		return personService.list();
 	}
 	
-	@GetMapping(value = "/{id}", headers = "Accept=application/json")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<NaturalPersonDto> getPerson (@PathVariable(value = "id") @Min(1) Long id) throws NotFoundException  
 	{
 		 Optional<NaturalPersonDto> person = personService.findById(id);
 		 return new ResponseEntity<NaturalPersonDto>(person.get(), HttpStatus.OK);
 	}
 	
-	 @PostMapping(headers = "Accept=application/json")
+	 @PostMapping
 	 public ResponseEntity<NaturalPersonDto> create(@Valid @RequestBody NaturalPersonDto newPerson) 
 	 {
 		 NaturalPerson person = personService.addPerson(newPerson);
@@ -66,7 +66,7 @@ public class NaturalPersonController {
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @DeleteMapping(path = "/{id}", headers = "Accept=application/json")
+	 @DeleteMapping(path = "/{id}")
 	 public ResponseEntity<String> delete(@PathVariable(value = "id") @Min(1) Long id) throws NotFoundException 
 	 {
 		 personService.remove(id);

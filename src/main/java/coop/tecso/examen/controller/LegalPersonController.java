@@ -33,20 +33,20 @@ public class LegalPersonController {
 	@Autowired
 	private LegalPersonServiceImpl personService;
 	
-	@GetMapping(headers = "Accept=application/json")
+	@GetMapping
 	public List<LegalPersonDto> index()
 	{
 		return personService.list();
 	}
 	
-	@GetMapping(value = "/{id}", headers = "Accept=application/json")
+	@GetMapping(value = "/{id}")
 	public ResponseEntity<LegalPersonDto> getUser (@PathVariable("id") @Min(1) Long id) throws NotFoundException  
 	{
 		 Optional<LegalPersonDto> person = personService.findById(id);
 		 return new ResponseEntity<LegalPersonDto>(person.get(), HttpStatus.OK);
 	}
 	
-	 @PostMapping(headers = "Accept=application/json")
+	 @PostMapping
 	 public ResponseEntity<Void> create(@Valid @RequestBody LegalPersonDto newPersonDto) 
 	 {
 		 LegalPerson person = personService.addPerson(newPersonDto);
@@ -59,7 +59,7 @@ public class LegalPersonController {
 		 return ResponseEntity.created(location).build();
 	 }
 	 
-	 @PutMapping(path = "/{id}", headers = "Accept=application/json")
+	 @PutMapping(path = "/{id}")
 	 public ResponseEntity<Void> edit (@PathVariable("id") final long id, @Valid @RequestBody UpdateLegalPersonDto newPersonDto) throws NotFoundException
 	 {
 		 LegalPerson person = personService.editPerson(id, newPersonDto);
