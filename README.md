@@ -23,3 +23,5 @@ La API cuenta con dos controladores. Uno para entidades jurídicas y otro para e
 - Aún no hay pruebas unitarias.
 
 - Para testear más la API, debería escribirse un cliente y consumir de la misma.
+
+- Debería añadirse un servicio o un par de métodos encargados de validar input de usuario, dependiendo de qué tipos de DNI, cuit o fechas se consideren válidas.

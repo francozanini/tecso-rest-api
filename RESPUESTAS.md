@@ -14,6 +14,8 @@ En caso de preferir el cliente Postman para realizar las request, las mismas est
 
 [![Run in Postman](https://run.pstmn.io/button.svg)](https://app.getpostman.com/run-collection/c0a9e7a7dc80bcce468b)
 
+Las requests hechas mediante curl fueron probadas en W10 usando Git Bash.
+
 ___
 
 ## Requests para personas físicas
@@ -28,7 +30,7 @@ ___
 
 - **Crear una persona física:**
 
-    curl -X POST -H 'Content-Type: application/json' -H  -d '{"firstName": "Nombre", "lastName": "Apellido", "dni": 123, "cuit": 123}' "https://tecso-rest-api.herokuapp.com/api/person/natural/"
+    curl -X POST -H 'Content-Type: application/json' -d '{"firstName": "Nombre", "lastName": "Apellido", "dni": 123, "cuit": 123}' "https://tecso-rest-api.herokuapp.com/api/person/natural/"
 
 - **Editar/crear una persona física:**
 
@@ -56,7 +58,7 @@ ___
 
 - **Editar/crear una persona jurídica:**
 
-    curl -X PUT -H 'Content-Type: application/json'  -d '{"businessName": "Razón social", "firstYearOfBusiness": 2019, "cuit": 1234}' "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
+    curl -X PUT -H 'Content-Type: application/json'  -d '{"businessName": "Razon social", "firstYearOfBusiness": 2019, "cuit": 1234}' "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
 
 - **Borrar una persona jurídica por id:**
 
