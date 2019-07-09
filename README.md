@@ -19,3 +19,7 @@ La API cuenta con dos controladores. Uno para entidades jurídicas y otro para e
 - Pueden añadirse filtros, offsets y límites a los listados.
 
 - Sería beneficioso poder buscar personas por dni o cuit y no sólo por id.
+
+- Aún no hay pruebas unitarias.
+
+- Para testear más la API, debería escribirse un cliente y consumir de la misma.
