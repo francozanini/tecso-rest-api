@@ -1,5 +1,7 @@
 # Respuestas
 
+## Consideraciones
+
 Para el propósito de estas urls, *{x}* denota a cualquier path variable *"x".*
 
 La base de datos no se encuentra inicialmente poblada.
@@ -14,44 +16,48 @@ En caso de preferir el cliente Postman para realizar las request, las mismas est
 
 ___
 
-**Obtener persona física por id:**
+## Requests para personas físicas
 
--curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/natural/{id}"
+- **Obtener persona física por id:**
 
-**Todas las personas físicas:**
+    curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/natural/{id}"
 
--curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/natural/"
+- **Todas las personas físicas:**
 
-**Crear una persona física:**
+    curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/natural/"
 
--curl -X POST -H 'Content-Type: application/json' -H  -d '{"firstName": "Nombre", "lastName": "Apellido", "dni": 123, "cuit": 123}' "https://tecso-rest-api.herokuapp.com/api/person/natural/"
+- **Crear una persona física:**
 
-**Editar/crear una persona física:**
+    curl -X POST -H 'Content-Type: application/json' -H  -d '{"firstName": "Nombre", "lastName": "Apellido", "dni": 123, "cuit": 123}' "https://tecso-rest-api.herokuapp.com/api/person/natural/"
 
--curl -X PUT -H 'Content-Type: application/json' -d '{"firstName": "nombre", "lastName": 2019, "dni": 1234, "cuit": 12345}' "https://tecso-rest-api.herokuapp.com/api/person/natural/{id}"
+- **Editar/crear una persona física:**
 
-**Borrar una persona física por id:**
+    curl -X PUT -H 'Content-Type: application/json' -d '{"firstName": "nombre", "lastName": 2019, "dni": 1234, "cuit": 12345}' "https://tecso-rest-api.herokuapp.com/api/person/natural/{id}"
 
--curl -X DELETE "https://tecso-rest-api.herokuapp.com/api/person/natural/{id}"
+- **Borrar una persona física por id:**
+
+    curl -X DELETE "https://tecso-rest-api.herokuapp.com/api/person/natural/{id}"
 
 ___
 
-**Todas las personas jurídicas:**
+## Requests para personas jurídicas
 
--curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/legal/"
+- **Todas las personas jurídicas:**
 
-**Obtener una persona jurídica por id:**
+    curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/legal/"
 
--curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
+- **Obtener una persona jurídica por id:**
 
-**Crear una persona jurídica:**
+    curl -X GET "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
 
--curl -X POST -H 'Content-Type: application/json' -d '{"businessName": "name", "firstYearOfBusiness": 2019, "cuit": 1234236}' "https://tecso-rest-api.herokuapp.com/api/person/legal/"
+- **Crear una persona jurídica:**
 
-**Editar/crear una persona jurídica:**
+    curl -X POST -H 'Content-Type: application/json' -d '{"businessName": "name", "firstYearOfBusiness": 2019, "cuit": 1234236}' "https://tecso-rest-api.herokuapp.com/api/person/legal/"
 
--curl -X PUT -H 'Content-Type: application/json'  -d '{"businessName": "Razón social", "firstYearOfBusiness": 2019, "cuit": 1234}' "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
+- **Editar/crear una persona jurídica:**
 
-**Borrar una persona jurídica por id:**
+    curl -X PUT -H 'Content-Type: application/json'  -d '{"businessName": "Razón social", "firstYearOfBusiness": 2019, "cuit": 1234}' "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
 
--curl -X DELETE "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
+- **Borrar una persona jurídica por id:**
+
+    curl -X DELETE "https://tecso-rest-api.herokuapp.com/api/person/legal/{id}"
