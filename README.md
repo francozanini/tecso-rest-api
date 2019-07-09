@@ -1,54 +1,21 @@
-Herramientas necesarias:
+# Tecso Spring Boot Test Problema 1
 
-	- GIT     ( Version homologada: 2.11.0 )
-	- Maven   ( Version homologada: 3.3.9 )
-	- Java    ( Version homologada: 1.8.0_181, vendor: Oracle Corporation )
-	- Eclipse ( Version homologada: Photon Release (4.8.0) )
-	- curl    ( Version homologada: 7.52.1 )
+## Consideraciones
 
+La aplicación es accesible para hacer requests en heroku desde [este link](https://tecso-rest-api.herokuapp.com/api/). Alternativamente, se puede descargar el proyecto y correrlo localmente.
 
-Descargando el repositorio:
+Las requests requeridas se encuentran disponibles en [RESPUESTAS.MD](https://github.com/francozanini/tecso-rest-api/RESPUESTAS.MD)
 
-	- git clone git@gitlab.tecso.coop:tecso-public/test-spring-boot-level-1.git
+La API cuenta con dos controladores. Uno para entidades jurídicas y otro para entidades físicas.
 
+## Posibles mejoras y features a añadir
 
-Para ejecutar la aplicacion utilizando Maven:
+- Las responses a requests erróneas no siempre son útiles para el consumidos de la API. Es posible mejorar los mensajes devueltos en casos de excepciones o errores en la petición.
 
-	mvn spring-boot:run -Drun.jvmArguments="-Dspring.profiles.active=dev"
-	
-	
-Probando controllers:
+- El modelo de datos consta de dos entidades y usa herencia del tipo SINGLE-TABLE. En pos de no desperdiciar espacio, se podrían separar las entidades en distintas tablas.
 
-	Obteniendo version de build:
-	curl -X GET "http://localhost:8080/api/version/number"
-	
-	Realizando POST echo test:
-	curl -X POST -H 'Content-Type: application/json' -H 'Accept: application/json' 
-	-d '{"mensaje":"mensaje de prueba"}' localhost:8080/api/echo
-	
-	Obtener suma de numeros:
-	curl -X GET "http://localhost:8080/api/math/sum?valores=1.1&valores=2.22&valores=3.33"
-	
-	Obtener todos los paises:
-	curl -X GET "http://localhost:8080/api/country/findAll"
-	
-	
-Workflow:
+- Se pueden agrupar cuestiones comunes a ambas entidades en una tercera entidad 'Titular', adaptando la API al patrón actor-rol. En este caso, se podría contar con un tercer controllador, servicios, dtos; etcétera.
 
-	- Descargar repositorio.
-	
-	- Validar funcionamiento del proyecto descargado ejecutando la aplicacion via Maven y utilizando los requests de prueba
-	mediante la utilizacion de "curl".
-	
-	- Desde el Eclipse, importar el proyecto (importar como proyecto Maven existente).
-	
-	- Resolver los ejercios indicados.  Ver enuciados en ** "EJERCICIOS.md" **.
-	
-	- Agregar un archivo llamado "RESPUESTAS.md" que contenga todas las "curl requests" que permitan
-	probar las funcionalidades agregadas. 
-	
-	- Crear nuevo proyecto GIT (en gitlab o github), pushear en este nuevo espacio el
-	proyecto con todos los ejercicios resueltos y enviar la url del repositorio
-	para revision de las soluciones implementadas.  
-	
-	- Asegurarse que los permisos de acceso al repositorio sean adecuados para que quien reciba la url pueda realizar el clonado.
+- Pueden añadirse filtros, offsets y límites a los listados.
+
+- Sería beneficioso poder buscar personas por dni o cuit y no sólo por id.
