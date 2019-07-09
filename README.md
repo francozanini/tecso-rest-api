@@ -4,7 +4,7 @@
 
 La aplicación es accesible para hacer requests en heroku desde [este link](https://tecso-rest-api.herokuapp.com/api/). Alternativamente, se puede descargar el proyecto y correrlo localmente.
 
-Las requests requeridas se encuentran disponibles en [RESPUESTAS.MD](https://github.com/francozanini/tecso-rest-api/RESPUESTAS.MD)
+Las requests requeridas se encuentran disponibles en [RESPUESTAS.MD](https://github.com/francozanini/tecso-rest-api/blob/master/RESPUESTAS.md)
 
 La API cuenta con dos controladores. Uno para entidades jurídicas y otro para entidades físicas.
 
